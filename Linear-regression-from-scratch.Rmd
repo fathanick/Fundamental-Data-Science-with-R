@@ -1,9 +1,11 @@
 ---
 title: "Linear Regression from Scratch"
-output: html_notebook
+output:
+  html_document:
+    df_print: paged
 ---
 
-### a funtion implements a linear model
+### A funtion implements a linear model
 ```{r}
 linearModel <- function(x, p1, p2){
   res <- p1 + p2 * x
@@ -12,7 +14,7 @@ linearModel <- function(x, p1, p2){
 }
 ```
 
-### a function implements the least square/cost function
+### A function implements the least square/cost function
 
 ```{r}
 leastSquare <- function(ypred, yorigin) {

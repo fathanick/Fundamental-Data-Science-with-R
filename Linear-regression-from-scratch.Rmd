@@ -46,6 +46,7 @@ plot(xlab="Area", ylab="Price", dataPortland$area, dataPortland$price)
 
 ```{r}
 #begin the optimization
+plot(xlab="Area", ylab="Price", dataPortland$area, dataPortland$price)
 iter <- 25
 for (i in 1 : iter) {
   y_pred <- sapply(dataPortland$area, linearModel, theta_0, theta_1)

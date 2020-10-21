@@ -1,9 +1,7 @@
 ---
-title: "R Notebook"
+title: "Linear Regression from Scratch"
 output: html_notebook
 ---
-
-## Linear Regression from Scratch
 
 ### a funtion implements a linear model
 ```{r}

@@ -1,9 +1,8 @@
 ---
-title: "R Notebook"
+title: "Linear Regression Boston Dataset"
 output: html_notebook
 ---
 
-## Linear Regression Boston Dataset
 ```{r}
 library(MASS)
 head(Boston)

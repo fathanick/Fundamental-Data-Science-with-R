@@ -1,0 +1,29 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+## Linear Regression Boston Dataset
+```{r}
+library(MASS)
+head(Boston)
+```
+
+```{r}
+linear_model <- lm(medv~lstat, data = Boston)
+linear_model
+```
+
+```{r}
+summary(linear_model)
+```
+```{r}
+names(linear_model)
+```
+
+```{r}
+attach(Boston)
+plot(lstat, medv)
+abline(linear_model)
+```
+

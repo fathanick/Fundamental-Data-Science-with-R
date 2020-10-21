@@ -1,0 +1,76 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+## Linear Regression from Scratch
+
+### a funtion implements a linear model
+```{r}
+linearModel <- function(x, p1, p2){
+  res <- p1 + p2 * x
+  
+  return(res)
+}
+```
+
+### a function implements the least square/cost function
+
+```{r}
+leastSquare <- function(ypred, yorigin) {
+  res <- (0.5) * sum(ypred - yorigin)^2
+return(res)
+}
+```
+
+```{r}
+allCost <- NULL
+# randomly initialize parameters, 
+# drawing from a normal distribution
+theta_0 <- rnorm(1, 0, 1)
+theta_1 <- rnorm(1, 0, 1)
+#set the learning rate
+alpha <- 0.000000001
+```
+
+
+```{r}
+dataPortland <- read.csv("dataset/dataPortland.csv")
+head(dataPortland)
+```
+
+```{r}
+#setting two-column plot
+par(mfrow=c(1,2))
+plot(xlab="Area", ylab="Price", dataPortland$area, dataPortland$price)
+
+```
+
+```{r}
+#begin the optimization
+iter <- 25
+for (i in 1 : iter) {
+  y_pred <- sapply(dataPortland$area, linearModel, theta_0, theta_1)
+  cost <- leastSquare(y_pred, dataPortland$price)
+  D_theta1 <- sum( dataPortland$area * 
+                     (y_pred - dataPortland$price)) # Partial derivative a
+  D_theta0 <- sum((y_pred - dataPortland$price)) # Partial derivative b
+  theta_0 <- theta_0 - alpha * D_theta0
+  theta_1 <- theta_1 - alpha * D_theta1
+  print(cost)
+  allCost <- c(allCost, cost)
+  #plot the lines
+  lines(dataPortland$area, y_pred, col="red")
+}
+```
+
+```{r}
+#to plot the cost
+plot(NULL, NULL, ylab="cost", xlab="iterasi", xlim = c(1,iter), ylim = c(min(allCost), max(allCost)))
+for (i in 1:iter) {
+  points(i, allCost[i])
+}
+```
+
+
+

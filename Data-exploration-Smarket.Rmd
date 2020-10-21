@@ -1,0 +1,30 @@
+---
+title: "Data Exploration using Smarket Dataset"
+output:
+  html_document:
+    df_print: paged
+---
+
+Prepare the package and data
+```{r}
+library(ISLR)
+attach(Smarket)
+```
+
+See what's on the dataframe
+```{r}
+names(Smarket)
+```
+
+See the size of the data
+```{r}
+dim(Smarket)
+```
+See a glimpse of the first few rows
+```{r}
+head(Smarket)
+```
+See the summary of the data
+```{r}
+summary(Smarket)
+```

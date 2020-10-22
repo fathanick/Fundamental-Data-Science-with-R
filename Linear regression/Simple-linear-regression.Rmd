@@ -1,0 +1,29 @@
+---
+title: "Simple Linear Regression"
+output:
+  html_document:
+    df_print: paged
+---
+
+R package `predict3d` aims to draw predicts plot for various regression models. The main two functions are `ggPredict()` for 2-dimensional(2d) plot and `predict3d()` for three dimensional(3d) plot. The `ggPredict()` function makes a ggplot object using ggplot2 package and the `predict3d()` function uses rgl package to make the 3d scatter plot.
+```{r}
+library(predict3d)
+library(rgl)
+```
+
+```{r}
+fit <- lm(mpg~wt, data = mtcars)
+summary(fit)
+```
+
+```{r}
+ggPredict(fit)
+```
+
+```{r}
+ggPredict(fit, xpos = 0.75, vjust = 1.5, show.error = T)
+```
+
+### References
+
+* https://rpubs.com/cardiomoon/474707

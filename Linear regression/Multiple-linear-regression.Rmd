@@ -1,0 +1,33 @@
+---
+title: "Multiple Linear Regression"
+output:
+  html_document:
+    df_print: paged
+---
+```{r}
+library(predict3d)
+library(rgl)
+```
+
+
+```{r}
+mtcars$engine=ifelse(mtcars$vs==0,"V-shaped","straight")
+```
+
+```{r}
+fit1=lm(mpg~wt+engine,data=mtcars)
+summary(fit1)
+```
+
+```{r}
+ggPredict(fit1,digits=1)
+ggPredict(fit1,digits=1,show.error = TRUE,facet.modx = TRUE,show.text=FALSE)
+```
+```{r}
+predict3d(fit1,radius=0.5)
+rglwidget(elementId = "1st")
+```
+### References
+
+* https://rpubs.com/cardiomoon/474707
+

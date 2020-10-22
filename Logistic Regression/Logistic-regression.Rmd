@@ -66,6 +66,14 @@ library(pROC)
 plot(roc(as.numeric(test$Direction),
          as.numeric(factor(pred.logit))))
 ```
+```{r}
+predict(model, 
+        newdata = data.frame(Lag1 = -1.98, 
+                             Lag2 = 1.098,
+                             Lag3 = 0.34), 
+        type = "response")
+```
+
 
 #### References
 

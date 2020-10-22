@@ -1,6 +1,8 @@
 ---
 title: "R Notebook"
-output: html_notebook
+output:
+  html_document:
+    df_print: paged
 ---
 
 
@@ -52,6 +54,7 @@ summary(fit2)
 ```
 
 ```{r}
+library(predict3d)
 ggPredict(fit2, se = TRUE, interactuve = TRUE, digits = 3)
 ```
 

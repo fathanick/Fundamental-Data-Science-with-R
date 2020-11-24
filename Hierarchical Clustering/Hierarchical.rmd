@@ -1,0 +1,56 @@
+---
+title: "Hierarchical Clustering"
+output:
+  pdf_document: default
+  html_document:
+    df_print: paged
+    highlight: tango
+---
+
+Tutorial ini adalah bagian dari mata kuliah Fundamental Sains Data, Prodi Sarjana Informatika, UII.
+
+#### Data USArrests
+Pada contoh ini kita akan menggunakan sebuah data set `USArrest`, yang disediakan oleh package `datasets`. Data ini berisi statistik pengangkapan penjahat per 100.000 penduduk pada 50 negara bagian di U.S. pada tahun 1973, yang berdasarkan tiga jenis tindak kejahatan: penyerangan (`Assault`), pembunuhan (`Murder`), dan pemerkosaan (`Rape`), serta presentase penduduk yang tinggal di daerah urban. 
+
+Pertama, mari kita lihat lebih detail tentang data tersebut.
+```{r, attr.source = ".numberLines"}
+USArrests
+summary(USArrests)
+```
+
+Sebuah alternatif untuk mendapatkan visualisasi dari setiap variabel adalah dengan menggunakan `barplot()`. Baris 1 membuat sebuat data frame dari data set `USArrest` dan menambahkan satu kolom berisi nama negara bagian (state). Baris 2 untuk mengubah orientasi label pada sumbu vertikal sehingga daapt terbaca secara horizontal (lihat nama negara bagian), dan Baris 3 untuk mengatur margin, sehingga possi barplot lebih di tengah. Baris 4 membuat barplot untuk variabel `Murder`; baris-barise selanjutnya membuat `barplot` untuk variabel lain.
+
+```{r, attr.source = ".numberLines"}
+df <- data.frame(States=rownames(USArrests), USArrests)
+par(las=2) # make label text perpendicular to axis
+par(mar=c(5,8,4,2)) # increase y-axis margin.
+barplot(df$Murder, names.arg = df$States, horiz = TRUE, cex.names = 0.5, xlab = "Murder Arrest per 100.000")
+barplot(df$Assault, names.arg = df$States, horiz = TRUE, cex.names = 0.5, xlab = "Assault Arrest per 100.000")
+barplot(df$Rape, names.arg = df$States, horiz = TRUE, cex.names = 0.5, xlab = "Rape Arrest per 100.000")
+barplot(df$UrbanPop, names.arg = df$States, horiz = TRUE, cex.names = 0.5, xlab = "Polulation in urban area")
+```
+
+
+Perhatikan sebaran setiap variabel berdasarakan empat barplot di atas, untuk mendapatkan insight tentang data.
+
+#### Hierarchical Clustering
+Di sini kita akan melakukan hierarchical clustering menggunakan fungsi `hclust`. Di sini kita hanya ingin menggunakan empat variabel (tanpa variabel `States`), maka kita hilangkan variabel tersebut lewat Baris 1. Fungsi `hclust` menerima matriks jarak (dissimilarity meassure dari setiap pasang variabel), maka kita menghitung matriks tersebut lewat Baris 2. Pada Baris 3, kita melakukan hiearchical clustering dengan metode `complete linkage` (lihat slide materi). Rekan-rekan bisa mencoba dengan `single`, `average`, dan metode lain (lihat `?hclust` untuk lebih jelasnya). Baris 4 membuat plot dendrogram dari hasil clustering; parameter `cex` emngatur besar font untuk label pada sumbu x, `hang` mengatur posisi label terhadap sumbu y.
+```{r, attr.source = ".numberLines"}
+df <- scale(df[, 2:5])
+d <- dist(df, method = "euclidean")
+clusters <- hclust(d, method = "complete" )
+plot(clusters, cex = 0.6, hang = -1)
+```
+
+
+
+Kita dapat menggunakan fungsi `rect.hclust()` untuk menggambar kotak pada sejumlah klaster yang kita inginkan. Sebagai contoh, kita ingin melihat 4 klaster dari hasil clustering di atas. Maka kita set `k=4`. Parameter `border` mengatur warna kotak dari setiap klaster.
+
+```{r}
+plot(clusters, cex = 0.6, hang = -1)
+rect.hclust(clusters, k = 4, border = 2:5)
+```
+
+#### Latihan
+Cobalah hiearchical clustering pada data `USArrests` menggunakan metode `single` dan `average`. Amati perubahannya. Kemudian dengan masing-masing metode, lihat 4 (atau ubah nilai ini) klaster menggunakan `rect.hclust`, dan bandingkan juga keanggotaan setiap klaster, dari masing-masing metode.
+

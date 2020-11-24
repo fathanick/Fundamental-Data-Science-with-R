@@ -33,7 +33,7 @@ km.res <- kmeans(df, 5, nstart = 25)
 fviz_cluster(km.res, df, frame = FALSE, geom = "point")
 ```
 
-Dapat kita lihat, K-Means memberikan 5 cluster yang berbeda dengan apa yang kita bayangkan. Di sini, adalah sebuah contoh di mana sebagaiknya kita tidak menggunakan K-Means pada data yang memiliki bentuk sebaran yang tidak lazim.
+Dapat kita lihat, K-Means memberikan 5 cluster yang berbeda dengan apa yang kita bayangkan. Di sini, adalah sebuah contoh di mana sebaiknya kita tidak menggunakan K-Means pada data yang memiliki bentuk sebaran yang tidak lazim.
 
 Selanjutnya, mari kita aplikasikan DBSCAN pada data yang sama. Ingat pada DBSCAN, kita tidak perlu menentukan jumlah cluster di awal.
 

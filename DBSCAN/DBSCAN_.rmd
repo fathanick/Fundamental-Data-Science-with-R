@@ -1,14 +1,14 @@
 ---
 title: "Tutorial DBSCAN"
 output:
-  pdf_document: default
   html_document:
     df_print: paged
     highlight: tango
+  pdf_document: default
 ---
 ---
 
-Tutorial ini adalah bagian dari mata kuliah Fundamen Sains Data, Informatika, UII.
+Tutorial ini adalah bagian dari mata kuliah Pembelajaran Mesin, Informatika, UII.
 
 Pada tutorial kali ini kita akan membanding hasil dari K-Means dan DBSCAN pada sebuah data set yang memiliki *odd shape* atau bentuk yang tidak biasa. Di sini kita akan menggunakan packge `factoextra`. Kita akan menggunakan data set `multishapes`, yang berisi 1100 observations dengan dua variabel (kita mengambil dua kolom pertama pada baris ke-3 dari script di bawah ini) yang merepresentasikan berbagai macam bentuk.
 
@@ -33,7 +33,7 @@ km.res <- kmeans(df, 5, nstart = 25)
 fviz_cluster(km.res, df, frame = FALSE, geom = "point")
 ```
 
-Dapat kita lihat, K-Means memberikan 5 cluster yang berbeda dengan apa yang kita bayangkan. Di sini, adalah sebuah contoh di mana sebaiknya kita tidak menggunakan K-Means pada data yang memiliki bentuk sebaran yang tidak lazim.
+Dapat kita lihat, K-Means memberikan 5 cluster yang berbeda dengan apa yang kita bayangkan. Di sini, adalah sebuah contoh di mana sebagaiknya kita tidak menggunakan K-Means pada data yang memiliki bentuk sebaran yang tidak lazim.
 
 Selanjutnya, mari kita aplikasikan DBSCAN pada data yang sama. Ingat pada DBSCAN, kita tidak perlu menentukan jumlah cluster di awal.
 
@@ -90,7 +90,7 @@ abline(h = 0.15, lty = 2)
 Dari plot yang di dapat, kita dapat lihat bahwa lembah pada kurva adalah ketika jarak = 0.15. Nilai inilah yang kita jadikan sebagai nilai $\epsilon$.
 
 
-Alternatif lain dalam menentukan $minPts$ adalah dengan menghitung rata-rata dari nilai k-distance dari semua data point. 
+Alternatif lain dalam menentukan $minPts$ adalah dengan menghitung rata-rata dari nilai k-distance dari semua data point. Nilai rata-rata tersebut 
 
 
 #### Latihan
